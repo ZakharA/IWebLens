@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from object_detection import object_detection
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ def image_validation():
         if images is None:
             error = "No image to process"
         else:
-            pass  # TODO implement object detection
+            net = object_detection(images)
+            return net.detect_objects()
     else:
         error = "Invalid request"
-        return error  # TODO return results
+        return error
