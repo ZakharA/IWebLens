@@ -10,11 +10,11 @@ class object_detection:
         self.objects = {"objects": []}
         self.image = image
         self.labels = open(
-            "object_detection/yolo-coco/coco.names").read().strip().split("\n")
+            "yolo-coco/coco.names").read().strip().split("\n")
         self.weightsPath = os.path.abspath(
-            'object_detection/yolo-coco/yolov3-tiny.weights')
+            'yolo-coco/yolov3-tiny.weights')
         self.configPath = os.path.abspath(
-            'object_detection/yolo-coco/tiny.cfg')
+            'yolo-coco/tiny.cfg')
         self.initiate_net()
 
     def initiate_net(self):
