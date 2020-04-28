@@ -2,3 +2,4 @@
 /IWebLens-env/
 /object_detection/inputfolder
 /object_detection/yolo-coco
+__pycache__
