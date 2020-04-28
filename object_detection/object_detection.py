@@ -22,7 +22,9 @@ class object_detection:
             self.configPath, self.weightsPath)
 
     def convert_to_blob(self):
-        image = cv2.imread(self.image)
+        npimg = np.fromstring(self.image, np.uint8)
+        # convert numpy array to image
+        image = cv2.imdecode(npimg, cv2.IMREAD_UNCHANGED)
         (self.H, self.W) = image.shape[:2]
         return cv2.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
                                      swapRB=True, crop=False)
