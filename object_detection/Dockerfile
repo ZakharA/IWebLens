@@ -1,5 +1,5 @@
 FROM python:3.8
-COPY . /src
+COPY *.py /src/
 WORKDIR /src
 RUN pip install flask numpy opencv-contrib-python opencv-python requests
 ADD https://raw.githubusercontent.com/pjreddie/darknet/master/data/coco.names yolo-coco/coco.names
