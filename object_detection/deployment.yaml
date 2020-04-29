@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iweb-lens 
+  labels:
+    app: iweb-lens 
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: iweb-lens
+  template:
+    metadata:
+      labels:
+      app: iweb-lens 
+    spec:
+      containers:
+        - name: iweb-lens
+        image: iweb-lens:0.3.0 
+        ports:
+          - containerPort: 5000 
+        resources:
+          limits:
+            cpu: "0.5"
+          requests: 
+            cpu: "0.5"
