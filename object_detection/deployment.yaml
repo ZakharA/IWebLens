@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: iweb-lens
-        image: iweb-lens:0.3.0 
+        image: iweblens 
         ports:
           - containerPort: 5000 
         resources:
