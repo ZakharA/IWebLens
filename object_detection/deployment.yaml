@@ -12,13 +12,13 @@ spec:
   template:
     metadata:
       labels:
-      app: iweb-lens 
+        app: iweb-lens 
     spec:
       containers:
-        - name: iweb-lens
+      - name: iweb-lens
         image: iweblens 
         ports:
-          - containerPort: 5000 
+        - containerPort: 5000 
         resources:
           limits:
             cpu: "0.5"
