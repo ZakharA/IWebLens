@@ -1,14 +1,26 @@
 apiVersion: v1
-  kind: Service
+kind: Service
 metadata:
-  name: iweblens-svc 
-  labels:
-    app: iweb-lens 
+  name: iweblens-svc
 spec:
-  type: NodePort 
+  type: NodePort
   ports:
   - port: 80
-    nodePort: 5000
-    protocol: TCP
+    targetPort: 80
+    nodePort: 30002
   selector:
-    app: iweb-lens 
+    app: iweblens
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: iweblens-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: iweblens-svc
+          servicePort: 80
+---
