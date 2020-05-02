@@ -5,21 +5,19 @@ import cv2
 import numpy as np
 
 
-class object_detection:
+class Object_detection:
+    labels = open("yolo-coco/coco.names").read().strip().split("\n")
+    weightsPath = os.path.abspath('yolo-coco/yolov3-tiny.weights')
+    configPath = os.path.abspath('yolo-coco/tiny.cfg')
+
     def __init__(self, image):
         self.objects = {"objects": []}
         self.image = image
-        self.labels = open(
-            "yolo-coco/coco.names").read().strip().split("\n")
-        self.weightsPath = os.path.abspath(
-            'yolo-coco/yolov3-tiny.weights')
-        self.configPath = os.path.abspath(
-            'yolo-coco/tiny.cfg')
         self.initiate_net()
 
     def initiate_net(self):
         self.net = cv2.dnn.readNetFromDarknet(
-            self.configPath, self.weightsPath)
+            Object_detection.configPath, Object_detection.weightsPath)
 
     def convert_to_blob(self):
         npimg = np.fromstring(self.image, np.uint8)
@@ -54,7 +52,7 @@ class object_detection:
                     y = int(centerY - (height / 2))
                     boxes.append([x, y, int(width), int(height)])
                     self.objects["objects"].append(
-                        {"label": f"{self.labels[classID]}", "accuracy": f"{confidence:.2f}"})
+                        {"label": f"{Object_detection.labels[classID]}", "accuracy": f"{confidence:.2f}"})
                     confidences.append(float(confidence))
                     classIDs.append(classID)
 
@@ -71,7 +69,7 @@ class object_detection:
 
 
 if __name__ == "__main__":
-    object_detection = object_detection(
+    Object_detection = Object_detection(
         "object_detection/inputfolder/000000012807.jpg")
-    x = object_detection.detect_objects()
+    x = Object_detection.detect_objects()
     print(x)
