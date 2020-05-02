@@ -10,17 +10,3 @@ spec:
     nodePort: 30002
   selector:
     app: iweblens
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: iweblens-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: iweblens-svc
-          servicePort: 80
----
