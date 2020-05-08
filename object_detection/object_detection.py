@@ -6,9 +6,11 @@ import numpy as np
 
 
 class Object_detection:
-    labels = open("yolo-coco/coco.names").read().strip().split("\n")
-    weightsPath = os.path.abspath('yolo-coco/yolov3-tiny.weights')
-    configPath = os.path.abspath('yolo-coco/tiny.cfg')
+    labels = open(
+        "object_detection/yolo-coco/coco.names").read().strip().split("\n")
+    weightsPath = os.path.abspath(
+        'object_detection/yolo-coco/yolov3-tiny.weights')
+    configPath = os.path.abspath('object_detection/yolo-coco/tiny.cfg')
 
     def __init__(self, image):
         self.objects = {"objects": []}
